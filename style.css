@@ -1,90 +1,27 @@
-/* Estilos base para que la página se vea similar a la plantilla original */
-html, body {
-	height: 100%;
-	font-family: "Helvetica Neue", Arial, sans-serif;
-	background: #f8f9fa;
-	color: #212529;
-	margin: 0;
-	padding: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Contenedor principal */
-.container-full {
-	padding: 20px 0;
-}
-
-/* Leves ajustes para centrar el bloque principal */
-.remove_float {
-	float: none;
-	margin: 0 auto;
-}
-
-/* Imagen centrada en su columna */
-.centrarIMG {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 100%;
-	height: auto;
-}
-
-/* Margen inferior en la fila superior */
-.margen-bottom-row {
-	margin-bottom: 16px;
-}
-
-/* Pequeñas reglas de ayuda */
-.inline {
-	display: block;
-}
-
-.text-center { text-align: center; }
-
-/* Secciones y espaciado entre formularios */
-.form-spacing {
-	margin: 12px 0;
-}
-
-/* Párrafos que se usan como títulos / labels */
-.titulo-seccion {
-	font-weight: 600;
-	margin-bottom: 8px;
-}
-
-/* Botones e inputs personalizados (btnGuardar en tu jade) */
-.btnGuardar {
-	display: block;
-	width: 100%;
-	padding: 10px 12px;
-	margin: 6px 0;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-/* Hacer que inputs y botones en la versión de escritorio no quiebren el layout */
-label.label-inline, p.label-inline {
-	display: block;
-	margin-bottom: 6px;
-	font-weight: 500;
-}
-
-/* Ajustes para columnas pequeñas */
-@media (min-width: 576px) {
-	.centrarIMG.img-fluid {
-		max-width: 180px;
-	}
-}
-
-/* Botones primarios y secundarios (apoyados por bootstrap) */
-.btn {
-	min-width: 120px;
-}
-
-/* Paneles ocultos/mostrados */
-.mail-content, #contentReg {
-	/* pequeño fondo para distinguir secciones */
-	background: #ffffff;
-	padding: 12px;
-	border-radius: 6px;
-	border: 1px solid #e6e6e6;
+@layer utilities {
+    .text-riemon-green {
+        color: #16c72e;
+    }
+    .text-riemon-green-dark {
+        color: #109121;
+    }
+    .text-riemon-green-light {
+        color: #9cf4a7;
+    }
+    .bg-riemon-green {
+        background-color: #16c72e;
+    }
+    .bg-riemon-green-dark {
+        background-color: #109121;
+    }
+    .bg-riemon-green-light {
+        background-color: #9cf4a7;
+    }
+    .bg-riemon-gray {
+        background-color: #f8f9fa;
+    }
 }
