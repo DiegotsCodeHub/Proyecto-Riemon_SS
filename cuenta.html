@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>RIEMON - Mi Cuenta</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "riemon-green": "#16c72e",
+              "riemon-green-dark": "#109121",
+              "riemon-green-light": "#9cf4a7",
+              "riemon-gray": "#f8f9fa",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-riemon-gray">
+    <div class="container mx-auto py-10 px-4">
+      
+      <div class="flex justify-end mb-4">
+        <div class="relative" id="user-menu-container">
+          <button
+            id="user-menu-button"
+            class="flex items-center gap-2 bg-white rounded-full py-2 px-4 shadow-sm hover:shadow-md transition-shadow duration-300"
+          >
+            <svg
+              class="w-6 h-6 text-riemon-green-dark"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              ></path>
+            </svg>
+            <span id="username-display" class="font-semibold text-gray-700"
+              >Cargando...</span
+            >
+            <svg
+              class="w-4 h-4 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div
+            id="user-menu-dropdown"
+            class="absolute hidden right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-10"
+          >
+            <a
+              href="cuenta.html"
+              class="block px-4 py-3 text-gray-700 bg-gray-100 font-semibold rounded-t-lg"
+              >Mi Cuenta</a
+            >
+            <a
+              href="sistemas.html"
+              class="block px-4 py-3 text-gray-700 hover:bg-gray-100"
+              >Sistemas Disponibles</a
+            >
+            <hr class="border-gray-200" />
+            <a
+              href="#"
+              id="logout-button"
+              class="block px-4 py-3 text-red-600 hover:bg-red-50 rounded-b-lg"
+              >Salida</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <a
+          href="index.html"
+          class="inline-flex items-center gap-2 text-riemon-green-dark font-semibold mb-4 hover:underline"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          Volver al Dashboard
+        </a>
+        
+        <div class="flex items-center gap-3 mb-6">
+          <lord-icon
+              src="https://cdn.lordicon.com/bgebyztw.json"
+              trigger="loop"
+              delay="1500"
+              colors="primary:#109121"
+              style="width:50px;height:50px">
+          </lord-icon>
+          <h1 class="text-4xl font-bold text-gray-800">Mi Cuenta</h1>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-8 card-animate">
+          <div class="space-y-6">
+            <div>
+              <label class="text-sm font-semibold text-gray-500"
+                >Nombre Completo</label
+              >
+              <p
+                id="user-fullname"
+                class="text-2xl text-gray-800 font-medium"
+              >
+                Cargando...
+              </p>
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-500"
+                >Correo Electrónico</label
+              >
+              <p id="user-email" class="text-2xl text-gray-800 font-medium">
+                Cargando...
+              </p>
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-500"
+                >Número de Teléfono</label
+              >
+              <p id="user-phone" class="text-2xl text-gray-800 font-medium">
+                Cargando...
+              </p>
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-500"
+                >Contraseña</label
+              >
+              <p class="text-2xl text-gray-800 font-medium">
+                ••••••••
+              </p>
+            </div>
+            
+            <button class="mt-4 bg-riemon-green text-white font-bold py-2 px-5 rounded-lg hover:bg-riemon-green-dark transition duration-300">
+                Editar Información
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // ====== INICIO: LÓGICA DE SESIÓN Y MENÚ DE USUARIO ======
+        const loggedInUser = sessionStorage.getItem("username");
+
+        if (!loggedInUser) {
+          window.location.href = "login.html";
+        } else {
+          // Actualizar nombre en la barra de menú
+          document.getElementById("username-display").innerText = loggedInUser;
+          
+          // --- NUEVO: Cargar datos en los campos ---
+          document.getElementById("user-fullname").innerText = loggedInUser; // Asumimos que 'username' es el nombre completo
+          
+          const userEmail = sessionStorage.getItem("email");
+          document.getElementById("user-email").innerText = userEmail || "No registrado";
+          
+          const userPhone = sessionStorage.getItem("phone");
+          document.getElementById("user-phone").innerText = userPhone || "No registrado";
+        }
+
+        const userMenuButton = document.getElementById("user-menu-button");
+        const userMenuDropdown = document.getElementById("user-menu-dropdown");
+        const userMenuContainer = document.getElementById("user-menu-container");
+        const logoutButton = document.getElementById("logout-button");
+
+        userMenuButton.addEventListener("click", () => {
+          userMenuDropdown.classList.toggle("hidden");
+        });
+
+        logoutButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          sessionStorage.removeItem("username");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("phone");
+          window.location.href = "login.html";
+        });
+
+        window.addEventListener("click", (e) => {
+          if (!userMenuContainer.contains(e.target)) {
+            userMenuDropdown.classList.add("hidden");
+          }
+        });
+        // ====== FIN: LÓGICA DE SESIÓN Y MENÚ DE USUARIO ======
+      });
+    </script>
+  </body>
+</html>

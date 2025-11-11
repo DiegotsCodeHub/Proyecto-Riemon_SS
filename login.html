@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>RIEMON - Iniciar Sesión</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link href="style.css" rel="stylesheet" />
+    
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "riemon-green": "#16c72e",
+              "riemon-green-dark": "#109121",
+              "riemon-green-light": "#9cf4a7",
+              "riemon-gray": "#f8f9fa",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  
+  <body class="bg-riemon-gray">
+    <div class="flex items-center justify-center min-h-screen px-4">
+      
+      <div
+        class="bg-white rounded-xl shadow-lg p-8 max-w-md w-full card-animate"
+      >
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-bold text-riemon-green-dark">RIEMON</h1>
+          <p class="text-gray-500 text-sm mt-1">
+            - Riega con Precisión, Riega con Pasión -
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-300"
+        >
+          <svg
+            class="w-5 h-5"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="#FFC107"
+              d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+            />
+            <path
+              fill="#FF3D00"
+              d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+            />
+            <path
+              fill="#4CAF50"
+              d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.223,0-9.649-3.417-11.303-8H6.306C9.656,35.663,16.318,40,24,40z"
+            />
+            <path
+              fill="#1976D2"
+              d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.089,5.571l6.19,5.238C41.405,35.631,44,30.138,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+            />
+          </svg>
+          Continuar con Google
+        </button>
+
+        <div class="flex items-center my-6">
+          <hr class="flex-grow border-t border-gray-300" />
+          <span class="mx-4 text-gray-500 font-semibold">O</span>
+          <hr class="flex-grow border-t border-gray-300" />
+        </div>
+
+        <form id="login-form">
+          <div class="space-y-4">
+            <div>
+              <label for="login-username" class="sr-only"
+                >Usuario o Correo</label
+              >
+              <input
+                type="text"
+                id="login-username"
+                placeholder="Usuario o Correo"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <div>
+              <label for="login-password" class="sr-only">Contraseña</label>
+              <input
+                type="password"
+                id="login-password"
+                placeholder="Contraseña"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-riemon-green text-white font-bold py-3 px-4 rounded-lg hover:bg-riemon-green-dark transition duration-300"
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+        </form>
+
+        <form id="register-form" class="hidden">
+          <div class="space-y-4">
+            <div>
+              <label for="reg-fullname" class="sr-only"
+                >Nombre Completo</label
+              >
+              <input
+                type="text"
+                id="reg-fullname"
+                placeholder="Nombre Completo"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <div>
+              <label for="reg-phone" class="sr-only"
+                >Número de Teléfono</label
+              >
+              <input
+                type="tel"
+                id="reg-phone"
+                placeholder="Número de Teléfono"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <div>
+              <label for="reg-email" class="sr-only"
+                >Correo Electrónico</label
+              >
+              <input
+                type="email"
+                id="reg-email"
+                placeholder="Correo Electrónico"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <div>
+              <label for="reg-password" class="sr-only">Contraseña</label>
+              <input
+                type="password"
+                id="reg-password"
+                placeholder="Contraseña"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riemon-green-light"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-riemon-green text-white font-bold py-3 px-4 rounded-lg hover:bg-riemon-green-dark transition duration-300"
+            >
+              Crear Cuenta
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center mt-6">
+          <p id="toggle-to-register" class="text-gray-600">
+            ¿No tienes cuenta?
+            <a
+              href="#"
+              id="show-register"
+              class="font-semibold text-riemon-green-dark hover:underline"
+              >Regístrate</a
+            >
+          </p>
+          <p id="toggle-to-login" class="text-gray-600 hidden">
+            ¿Ya tienes cuenta?
+            <a
+              href="#"
+              id="show-login"
+              class="font-semibold text-riemon-green-dark hover:underline"
+              >Inicia Sesión</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+
+        const showRegisterLink = document.getElementById("show-register");
+        const showLoginLink = document.getElementById("show-login");
+
+        const toggleToRegister = document.getElementById("toggle-to-register");
+        const toggleToLogin = document.getElementById("toggle-to-login");
+
+        // --- Lógica para alternar formularios ---
+        showRegisterLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginForm.classList.add("hidden");
+          registerForm.classList.remove("hidden");
+          toggleToRegister.classList.add("hidden");
+          toggleToLogin.classList.remove("hidden");
+        });
+
+        showLoginLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          registerForm.classList.add("hidden");
+          loginForm.classList.remove("hidden");
+          toggleToLogin.classList.add("hidden");
+          toggleToRegister.classList.remove("hidden");
+        });
+
+        // --- LÓGICA PARA REDIRECCIONAR ---
+
+        // Cuando se envía el formulario de Login
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          
+          // Tomamos el valor del campo de usuario/correo
+          const username = document.getElementById("login-username").value;
+
+          // ====== NUEVO: Guardar nombre en la sesión ======
+          sessionStorage.setItem("username", username || "Usuario");
+          
+          console.log("Iniciando sesión como:", username);
+          window.location.href = "index.html";
+        });
+        
+        // Cuando se envía el formulario de Registro
+        registerForm.addEventListener("submit", (e) => {
+          e.preventDefault(); 
+          
+          // Tomamos el valor del campo de nombre completo
+          const fullName = document.getElementById("reg-fullname").value;
+
+          // ====== NUEVO: Guardar nombre en la sesión ======
+          sessionStorage.setItem("username", fullName || "Usuario");
+
+          console.log("Registrando como:", fullName);
+          window.location.href = "index.html";
+        });
+      });
+    </script>
+  </body>
+</html>

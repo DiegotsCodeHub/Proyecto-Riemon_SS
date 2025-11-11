@@ -2,105 +2,445 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-riemon-green {
-    color: #16c72e;
+/* ========================================
+   RIEMON - Sistema de Riego Inteligente
+   Archivo de estilos personalizados
+   ======================================== */
+
+/* ====== FONDO ANIMADO ====== */
+.animated-bg {
+  background: linear-gradient(180deg, #16c72e 0%, #109121 30%, #8B7355 70%, #D2B48C 100%);
+  animation: gradientShift 15s ease infinite;
+  background-size: 100% 200%;
+  min-height: 100vh;
+}
+
+.dark .animated-bg {
+  background: linear-gradient(180deg, #0a4d14 0%, #062d0d 30%, #3d2f24 70%, #2d2419 100%);
+  animation: gradientShift 15s ease infinite;
+  background-size: 100% 200%;
+}
+
+@keyframes gradientShift {
+  0%, 100% { 
+    background-position: 0% 0%; 
   }
-  .text-riemon-green-dark {
-    color: #109121;
-  }
-  .text-riemon-green-light {
-    color: #9cf4a7;
-  }
-  .bg-riemon-green {
-    background-color: #16c72e;
-  }
-  .bg-riemon-green-dark {
-    background-color: #109121;
-  }
-  .bg-riemon-green-light {
-    background-color: #9cf4a7;
-  }
-  .bg-riemon-gray {
-    background-color: #f8f9fa;
+  50% { 
+    background-position: 0% 100%; 
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* ====== PLANTAS Y ÁRBOLES DE FONDO ====== */
+.plant-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.plant {
+  position: absolute;
+  bottom: 0;
+  width: 80px;
+  height: 150px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.plant:hover {
+  transform: scale(1.15) translateY(-10px);
+  animation: wiggle 0.5s ease;
+}
+
+@keyframes wiggle {
+  0%, 100% { 
+    transform: rotate(0deg) scale(1.15) translateY(-10px); 
   }
+  25% { 
+    transform: rotate(-5deg) scale(1.15) translateY(-10px); 
+  }
+  75% { 
+    transform: rotate(5deg) scale(1.15) translateY(-10px); 
+  }
+}
+
+.plant-sway {
+  animation: sway 4s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { 
+    transform: rotate(-2deg); 
+  }
+  50% { 
+    transform: rotate(2deg); 
+  }
+}
+
+.tree {
+  position: absolute;
+  bottom: 0;
+  width: 120px;
+  height: 200px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
+.tree:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.25));
+}
+
+.tree-sway {
+  animation: treeSway 6s ease-in-out infinite;
+}
+
+@keyframes treeSway {
+  0%, 100% { 
+    transform: rotate(-1deg); 
+  }
+  50% { 
+    transform: rotate(1deg); 
+  }
+}
+
+/* ====== ANIMACIONES DE CARDS ====== */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.card-hover:hover::before {
+  left: 100%;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ====== BOTONES ANIMADOS ====== */
+.btn-animate {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-animate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-animate:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-animate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dark .btn-animate:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ====== ANIMACIONES DE ENTRADA ====== */
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ====== ANIMACIÓN FLOTANTE ====== */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
 }
+
 @keyframes float {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0px);
   }
   50% {
     transform: translateY(-10px);
   }
 }
-.card-animate {
-  animation: fadeIn 0.6s ease-out forwards;
+
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
 }
-.card-animate:nth-child(1) {
-  animation-delay: 0.1s;
+
+/* ====== PARTÍCULAS FLOTANTES ====== */
+.particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp 10s infinite;
+  z-index: 0;
 }
-.card-animate:nth-child(2) {
-  animation-delay: 0.2s;
+
+.dark .particle {
+  background: rgba(255, 255, 255, 0.15);
 }
-.card-animate:nth-child(3) {
-  animation-delay: 0.3s;
+
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px);
+    opacity: 0;
+  }
 }
-.card-animate:nth-child(4) {
-  animation-delay: 0.4s;
+
+/* ====== ANILLOS DE ESTADÍSTICAS ====== */
+.stat-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(#16c72e var(--progress), #e5e7eb var(--progress));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.5s ease;
 }
-.card-animate:nth-child(5) {
-  animation-delay: 0.5s;
+
+.stat-ring::before {
+  content: '';
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  z-index: 1;
 }
-.card-animate:nth-child(6) {
-  animation-delay: 0.6s;
+
+.dark .stat-ring::before {
+  background: #1f2937;
 }
-.card-animate:nth-child(7) {
-  animation-delay: 0.7s;
+
+.stat-ring:hover {
+  transform: scale(1.1) rotate(5deg);
 }
-.float-animation {
-  animation: float 3s ease-in-out infinite;
+
+/* ====== EFECTO DE BRILLO EN HOVER ====== */
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(22, 199, 46, 0.6);
 }
-.slide-in {
-  animation: slideIn 0.8s ease-out;
+
+.dark .glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(22, 199, 46, 0.4);
 }
-.hover-scale {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hover-scale:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
+
+/* ====== GRADIENTE DEL HEADER ====== */
 .gradient-bg {
-  background: linear-gradient(135deg, #109121 0%, #16c72e 100%);
+  background: linear-gradient(135deg, #16c72e 0%, #109121 50%, #0d7019 100%);
+  box-shadow: 0 10px 40px rgba(22, 199, 46, 0.3);
+  transition: all 0.3s ease;
 }
+
+.gradient-bg:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 50px rgba(22, 199, 46, 0.5);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, #0a4d14 0%, #062d0d 50%, #041f09 100%);
+  box-shadow: 0 10px 40px rgba(10, 77, 20, 0.5);
+}
+
+/* ====== SCROLL SUAVE ====== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ====== NUBES FLOTANTES ====== */
+.cloud {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
+  pointer-events: none;
+  animation: cloudFloat 30s linear infinite;
+  z-index: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .cloud {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes cloudFloat {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* ====== CARDS DEL CLIMA ====== */
 .weather-day {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .weather-day:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dark .weather-day:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ====== ANIMACIÓN DE SLIDE ====== */
+.slide-in {
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== HOVER SCALE ====== */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
   transform: scale(1.05);
-  background-color: #f0fdf4;
+}
+
+/* ====== PERSONALIZACIÓN DE SCROLLBAR ====== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16c72e;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #109121;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #0a4d14;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #062d0d;
+}
+
+/* ====== ANIMACIÓN DE PULSO PARA INDICADORES ====== */
+.pulse-indicator {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .plant-container {
+    height: 200px;
+  }
+  
+  .tree {
+    width: 80px;
+    height: 140px;
+  }
+  
+  .plant {
+    width: 60px;
+    height: 110px;
+  }
+  
+  .cloud {
+    display: none;
+  }
+}
+
+/* ====== CARD ANIMADA (LEGACY SUPPORT) ====== */
+.card-animate {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
 }
